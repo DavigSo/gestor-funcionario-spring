@@ -5,6 +5,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
+@SuperBuilder
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +21,16 @@ public class Pessoa {
     private String nome;
     private LocalDate dataNascimento;
 
-   /** public LocalDate getDataNascimento() {
+   public LocalDate getDataNascimento() {
         return dataNascimento;
     }
-**/
+    public String getNome() {
+
+       return nome;
+    }
+    public void setNome(String nome) {
+       this.nome = nome;
+    }
 
 }
 

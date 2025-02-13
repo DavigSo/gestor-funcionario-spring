@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +17,14 @@ import java.util.stream.Collectors;
 public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
+    public double getSalario;
 
     @Autowired
     public FuncionarioService(FuncionarioRepository funcionarioRepository) {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-
+    
     public Funcionario createFuncionario(Funcionario funcionario) {
         return funcionarioRepository.save(funcionario);
     }
@@ -39,7 +41,7 @@ public class FuncionarioService {
     public void increaseSalaries(double parcent) {
         List<Funcionario> funcionarios = funcionarioRepository.findAll();
         funcionarios.forEach(funcionario -> {
-            funcionario .setSalario(funcionario.getSalario()
+            funcionario.setSalario(funcionario.getSalario()
                     .multiply(BigDecimal.valueOf((1 + parcent / 100))));
             funcionarioRepository.save(funcionario);
         });
@@ -66,5 +68,19 @@ public class FuncionarioService {
         return funcionarioRepository.findAll().stream()
                 .sorted(Comparator.comparing(Funcionario::getNome))
                 .collect(Collectors.toList());
+    }
+
+    public BigDecimal getTotalSalaries() {
+        return funcionarioRepository.findAll().stream()
+                .map(Funcionario::getSalario)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public Map<String, BigDecimal> getMinimumWageMultiples(BigDecimal salarioMinimo) {
+        return funcionarioRepository.findAll().stream()
+                .collect(Collectors.toMap(
+                        Funcionario::getNome,
+                        f -> f.getSalario().divide(salarioMinimo, 2, RoundingMode.HALF_UP)
+                ));
     }
 }
