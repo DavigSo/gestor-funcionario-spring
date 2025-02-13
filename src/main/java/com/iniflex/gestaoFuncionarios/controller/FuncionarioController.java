@@ -2,15 +2,12 @@ package com.iniflex.gestaoFuncionarios.controller;
 
 import com.iniflex.gestaoFuncionarios.entity.Funcionario;
 import com.iniflex.gestaoFuncionarios.service.FuncionarioService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -72,29 +69,29 @@ public class FuncionarioController {
     @GetMapping("/por-funcao")
     public ResponseEntity<Map<String, List<Funcionario>>> groupByFunction() {
         try {
-            funcionarioService.groupByFunction();
-            return new ResponseEntity<>(HttpStatus.OK);
+            Map<String, List<Funcionario>> grouped = funcionarioService.groupByFunction();
+            return new ResponseEntity<>(grouped, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
+
     @GetMapping("/aniversariantes")
     public ResponseEntity<List<Funcionario>> getFuncionariosByBirthdayMonths(@RequestParam List<Integer> meses) {
         try {
-            funcionarioService.getFuncionariosByBirthdayMonths(meses);
-            return new ResponseEntity<>(HttpStatus.OK);
+            List<Funcionario> aniversariantes = funcionarioService.getFuncionariosByBirthdayMonths(meses);
+            return new ResponseEntity<>(aniversariantes, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/mais-velho")
-    public ResponseEntity<Funcionario>getOldestFuncionario(){
+    public ResponseEntity<Funcionario> getOldestFuncionario() {
         try {
-            funcionarioService.getOldestFuncionario();
-            return new ResponseEntity<>(HttpStatus.OK);
-
+            Funcionario oldest = funcionarioService.getOldestFuncionario();
+            return new ResponseEntity<>(oldest, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
-    public double getSalario;
+
 
     @Autowired
     public FuncionarioService(FuncionarioRepository funcionarioRepository) {

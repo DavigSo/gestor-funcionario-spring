@@ -2,6 +2,7 @@ package com.iniflex.gestaoFuncionarios;
 
 import com.iniflex.gestaoFuncionarios.entity.Funcionario;
 import com.iniflex.gestaoFuncionarios.repository.FuncionarioRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,19 +11,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @SpringBootApplication
-public class GestaoFuncionariosApplication {
+public class GestaoFuncionariosApplication implements CommandLineRunner {
 
 	private final FuncionarioRepository funcionarioRepository;
 
-    public GestaoFuncionariosApplication(FuncionarioRepository funcionarioRepository) {
-        this.funcionarioRepository = funcionarioRepository;
-    }
+	public GestaoFuncionariosApplication(FuncionarioRepository funcionarioRepository) {
+		this.funcionarioRepository = funcionarioRepository;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(GestaoFuncionariosApplication.class, args);
 	}
 
-
+	// Esses dados são testados via postman
+	@Override
 	public void run(String... args) throws Exception {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -44,7 +46,7 @@ public class GestaoFuncionariosApplication {
 						.build()
 		);
 
-		// Repita o mesmo padrão para os demais funcionários:
+
 		funcionarioRepository.save(
 				Funcionario.builder()
 						.nome("Caio")
