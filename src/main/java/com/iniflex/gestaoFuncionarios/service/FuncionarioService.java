@@ -2,15 +2,15 @@ package com.iniflex.gestaoFuncionarios.service;
 
 import com.iniflex.gestaoFuncionarios.entity.Funcionario;
 import com.iniflex.gestaoFuncionarios.repository.FuncionarioRepository;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
+
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
@@ -39,9 +39,32 @@ public class FuncionarioService {
     public void increaseSalaries(double parcent) {
         List<Funcionario> funcionarios = funcionarioRepository.findAll();
         funcionarios.forEach(funcionario -> {
-            funcionario.setSalario(funcionario.getSalario().multiply(BigDecimal.valueOf((1 + parcent / 100))));
+            funcionario .setSalario(funcionario.getSalario()
+                    .multiply(BigDecimal.valueOf((1 + parcent / 100))));
             funcionarioRepository.save(funcionario);
         });
     }
 
+    public Map<String, List<Funcionario>> groupByFunction() {
+        return funcionarioRepository.findAll().stream()
+                .collect(Collectors.groupingBy(Funcionario::getFuncao));
+    }
+
+    public List<Funcionario> getFuncionariosByBirthdayMonths(List<Integer> meses) {
+        return funcionarioRepository.findAll().stream()
+                .filter(f -> meses.contains(f.getDataNascimento().getMonthValue()))
+                .collect(Collectors.toList());
+    }
+
+    public Funcionario getOldestFuncionario() {
+        return funcionarioRepository.findAll().stream()
+                .min(Comparator.comparing(Funcionario::getDataNascimento))
+                .orElse(null);
+    }
+
+    public List<Funcionario> getFuncionariosOrderedsByName() {
+        return funcionarioRepository.findAll().stream()
+                .sorted(Comparator.comparing(Funcionario::getNome))
+                .collect(Collectors.toList());
+    }
 }

@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "funcionarios")
@@ -20,6 +18,7 @@ public class Funcionario extends Pessoa {
     private BigDecimal salario;
     private String funcao;
 
+/**
     public BigDecimal getSalario() {
         return this.salario;
     }
@@ -28,4 +27,13 @@ public class Funcionario extends Pessoa {
         this.salario = salario;
     }
 
+    public String getFuncao() {
+        return this.funcao;
+
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+**/
 }

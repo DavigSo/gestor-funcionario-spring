@@ -18,4 +18,11 @@ public class Pessoa {
     private Long id;
     private String nome;
     private LocalDate dataNascimento;
+
+   /** public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+**/
+
 }
+
