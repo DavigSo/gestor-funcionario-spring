@@ -22,6 +22,7 @@ public class FuncionarioService {
     @Autowired
     public FuncionarioService(FuncionarioRepository funcionarioRepository) {
         this.funcionarioRepository = funcionarioRepository;
+
     }
 
     
