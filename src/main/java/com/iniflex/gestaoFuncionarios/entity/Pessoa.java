@@ -10,27 +10,15 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @MappedSuperclass
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private LocalDate dataNascimento;
-
-   public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-    public String getNome() {
-
-       return nome;
-    }
-    public void setNome(String nome) {
-       this.nome = nome;
-    }
-
 }
 
