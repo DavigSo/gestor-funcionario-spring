@@ -129,6 +129,9 @@ Todos os endpoints estão sob o path base:
 - **Descrição**: Retorna um mapa em que a chave é o nome do funcionário e o valor é a quantidade de salários mínimos (considerando R\$ 1.212,00) que ele recebe.
 
 ---
+## Documentação
+* [Evidência dos testes unitários](https://github.com/DavigSo/gestor-funcionario-spring/blob/master/testesUnitarios/Casos%20de%20teste%20-%20Iniflex%20Gestor%20de%20funcionarios%20.pdf)
+---
 
 ## Como Executar o Projeto
 
@@ -176,10 +179,9 @@ Por padrão, a aplicação está configurada para usar o banco de dados em memó
 
 ---
 
-## Autor
+## Contato
 
-- **Seu Nome** (caso deseje incluir)  
-- E-mail: [seuemail@exemplo.com](davig4611@gmail.com)  
-- LinkedIn: [linkedin.com/in/seu-perfil](https://www.linkedin.com/in/davi-sousa-/)
+[![Linkedin Badge](https://img.shields.io/badge/Linkedin-323330?style=for-the-badge&logo=linkedin&logoColor=blue)]([https://www.linkedin.com/in/deborahmouras/](https://www.linkedin.com/in/davi-sousa-/)) &nbsp;
+[![Gmail Usakimodoki Badge](https://img.shields.io/badge/-Gmail-323330?style=for-the-badge&logo=linkedin&logoColor=blue&link=mailto:contato@deborahmoura.com.br)](mailto:davig4611@gmail.com) &nbsp;
 
 ---
